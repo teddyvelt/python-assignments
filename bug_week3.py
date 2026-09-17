@@ -10,12 +10,12 @@ planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn"]
 
 print("--- All Planets ---")
 for planet in planets:                   
-print(planet.title())                   # BUG 1  
+    print(planet.title())                   # BUG 1  
 print("  (part of our solar system)")   # <-- should this be inside or outside?
 
 # Inner solar system planets are Mercury, Venus, Earth, and Mars.  The outer solar system planets are Jupiter, Saturn, Uranus, and Neptune.
 print("\n--- Counting Planets (inner solar system) ---")
-for number in range(0, 3):              # BUG 2
+for number in range(0, 4):              # BUG 2
      print(planets[number].title() + " is an inner solar system planet.")
 
 # ============================================================
@@ -28,9 +28,9 @@ for number in range(0, 3):              # BUG 2
 # ============================================================
 scores = [88, 95, 70, 100, 83]
 print("\n--- Test Score Stats ---")
-print("Lowest: " + str(scores.min()))
-print("Highest: " + str(scores.max()))
-print("Total points: " + str(scores.sum()))
+print("Lowest: " + str(min(scores)))
+print("Highest: " + str(max(scores)))
+print("Total points: " + str(sum(scores)))
 
 # ============================================================
 # BUG 4
@@ -40,7 +40,7 @@ print("Total points: " + str(scores.sum()))
 # You will find a name for it, and then you can google that name to learn more about it.
 # ============================================================
 print("\n--- Squared Numbers ---")
-squares = [number**2 for number in range(1, 6) if number > 10]
+squares = [number**2 for number in range(1, 6)]
 for square in squares:
     print(square)
 
