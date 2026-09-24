@@ -32,11 +32,11 @@
 # =============================================================================
 print("--- Grade Checker ---")
 
-grades_to_test = [95, 90, 85, 80, 72]          # <-- add your own grades
+grades_to_test = [95, 90, 85, 80, 72, 100, 60]          # <-- add your own grades
 for grade in grades_to_test:
     if grade >= 90:
         result = "You got an A!"
-    elif grade > 80:
+    elif grade >= 80:
         result = "You got a B!"
     else:
         result = "Keep working at it."
@@ -44,13 +44,14 @@ for grade in grades_to_test:
 
 # TEST CASE TABLE  (fill in ACTUAL, then mark PASS or FAIL)
 #   INPUT | EXPECTED             | ACTUAL | PASS?
-#   95    | You got an A!        |        |
-#   90    | You got an A!        |        |
-#   85    | You got a B!         |        |
-#   80    | You got a B!         |        |
-#   72    | Keep working at it.  |        |
-#   ____  | ___________________  |        |     <- add your own
-#   ____  | ___________________  |        |     <- add your own
+#   95    | You got an A!        |you got an A!        |yes
+#   90    | You got an A!        |You got an A!        |yes
+#   85    | You got a B!         |you got a B!         |yes
+#   80    | You got a B!         |Keep working at it.  |no
+#   72    | Keep working at it.  |Keep working at it.  |yes
+#   100   | You got an A!        |You got an A!        |yes   <- add your own
+#   60    | Keep working at it.  |Keep working at it.  |yes   <- add your own
+
 
 
 # =============================================================================
@@ -65,16 +66,16 @@ approved_users = ["admin", "natalie", "carlos", "priya"]
 users_to_test = ["admin", "guest", "natalie", "hacker"]     # <-- add your own
 for current_user in users_to_test:
     if current_user in approved_users:
-        print(f"  WARNING: '{current_user}' is not an approved user!")
+         print(f"  Welcome, {current_user}!")
     else:
-        print(f"  Welcome, {current_user}!")
+       print(f"  WARNING: '{current_user}' is not an approved user!")
 
 # TEST CASE TABLE  (fill in ACTUAL, then mark PASS or FAIL)
 #   INPUT   | EXPECTED                                   | ACTUAL | PASS?
-#   admin   | Welcome, admin!                            |        |
-#   guest   | WARNING: 'guest' is not an approved user!  |        |
-#   natalie | Welcome, natalie!                          |        |
-#   hacker  | WARNING: 'hacker' is not an approved user! |        |
+#   admin   | Welcome, admin!                            |WARNING: 'admin' is not an approved user!|no
+#   guest   | WARNING: 'guest' is not an approved user!  |Welcome, guest!|no
+#   natalie | Welcome, natalie!                          |WARNING: 'natalie' is not an approved user!|no
+#   hacker  | WARNING: 'hacker' is not an approved user! |Welcome, hacker!|no
 #   ______  | _________________________________________  |        |  <- add your own
 
 
@@ -86,13 +87,13 @@ for current_user in users_to_test:
 # =============================================================================
 print("\n--- Stage of Life ---")
 
-ages_to_test = [1, 5, 12, 13, 15, 19, 20, 45]      # <-- add your own
+ages_to_test = [1, 5, 12, 13, 15, 19, 20, 45, 67]      # <-- add your own
 for age in ages_to_test:
     if age < 2:
         stage = "infant"
     elif age < 13:
         stage = "child"
-    elif age < 13:
+    elif age <=19:
         stage = "teenager"
     else:
         stage = "adult"
@@ -100,15 +101,15 @@ for age in ages_to_test:
 
 # TEST CASE TABLE  (fill in ACTUAL, then mark PASS or FAIL)
 #   INPUT | EXPECTED | ACTUAL | PASS?
-#   1     | infant   |        |
-#   5     | child    |        |
-#   12    | child    |        |
-#   13    | teenager |        |
-#   15    | teenager |        |
-#   19    | teenager |        |
-#   20    | adult    |        |
-#   45    | adult    |        |
-#   ____  | ________ |        |   <- add your own
+#   1     | infant   | infant |yes
+#   5     | child    | child  |yes
+#   12    | child    | child  |yes
+#   13    | teenager | adult  |no
+#   15    | teenager | adult  |no
+#   19    | teenager | adult  |no
+#   20    | adult    | adult  |yes
+#   45    | adult    | adult  |yes
+#   67    | adult    | adult  |yes <- add your own
 
 
 # =============================================================================
@@ -119,33 +120,34 @@ for age in ages_to_test:
 print("\n--- Pizza Topping Checker ---")
 available_toppings = ["Pepperoni", "Mushrooms", "Green Peppers", "Olives"]
 
-requests_to_test = ["Pepperoni", "Mushrooms", "mushrooms", "Pineapple"]   # <-- add your own
+requests_to_test = ["pepperoni", "mushrooms", "Mushrooms", "Pineapple", "Olives"]   # <-- add your own
 for requested_topping in requests_to_test:
-    if requested_topping == available_toppings[0]:
-        print("  Adding pepperoni.")
-    elif requested_topping == available_toppings[1]:
-        print("  Adding mushrooms.")
-    elif requested_topping == available_toppings[2]:
+    if requested_topping.lower() == available_toppings[0].lower():
+        print("  Adding Pepperoni.")
+    elif requested_topping.lower() == available_toppings[1].lower():
+        print("  Adding Mushrooms.")
+    elif requested_topping.lower() == available_toppings[2].lower():
         print("  Adding green peppers.")
-    elif requested_topping == available_toppings[3]:
+    elif requested_topping.lower() == available_toppings[3].lower():
         print("  Adding olives.")
     else:
-        print(f"  Sorry, we don't have {requested_topping}.")
+        print(f"  Sorry, we don't have  {requested_topping}.")
 
 # TEST CASE TABLE  (fill in ACTUAL, then mark PASS or FAIL)
 #   INPUT     | EXPECTED                        | ACTUAL | PASS?
-#   Pepperoni | Adding pepperoni.               |        |
-#   Mushrooms | Adding mushrooms.               |        |
-#   mushrooms | Adding mushrooms.               |        |
-#   Pineapple | Sorry, we don't have Pineapple. |        |
-#   ________  | ______________________________  |        |  <- add your own
+#   Pepperoni | Adding pepperoni.               | Adding pepperoni |yes
+#   Mushrooms | Adding mushrooms.               | Adding mushrooms |yes
+#   mushrooms | Adding mushrooms.               | Sorry, we don't have mushrooms |no
+#   Pineapple | Sorry, we don't have Pineapple. | Sorry, we don't have Pineapple |yes
+#   Olives    | Adding olives.                   | Adding olives |yes <- add your own
+
 
 
 # =============================================================================
 # WHEN YOU ARE DONE
-#   [ ] Every table has ACTUAL filled in and PASS/FAIL marked
-#   [ ] You added at least two of your own test cases to each section
-#   [ ] You fixed each bug and re-ran until every row PASSES
-#   [ ] For each bug you can say (a) which test case exposed it and
+#   [x] Every table has ACTUAL filled in and PASS/FAIL marked
+#   [x] You added at least two of your own test cases to each section
+#   [x] You fixed each bug and re-ran until every row PASSES
+#   [x] For each bug you can say (a) which test case exposed it and
 #       (b) why the original code was wrong
 # =============================================================================
