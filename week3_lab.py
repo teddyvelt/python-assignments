@@ -132,14 +132,40 @@ print("=" * 52)
 
 # TODO: implement the stretch challenge here
 
+# 1. Find shortest and longest patterns
+lengths = [len(pattern) for letter, pattern in CODEBOOK]
+
+shortest = min(lengths)
+longest = max(lengths)
+
+print(f"Shortest pattern length: {shortest}")
+print(f"Longest pattern length: {longest}")
+
+for letter, pattern in CODEBOOK:
+    if len(pattern) == shortest:
+        print(f"Shortest: {letter} {pattern}")
+    if len(pattern) == longest:
+        print(f"Longest: {letter} {pattern}")
+
+# 2. Average pattern length
+average = sum(lengths) / len(CODEBOOK)
+print(f"Average pattern length: {average}")
+
+# 3. Numbered list
+for i in range(len(CODEBOOK)):
+    letter, pattern = CODEBOOK[i]
+    print(f"{i + 1}. {letter}  {pattern}")
+
+# I did use an ai assistant for this section and what it helped me with was part 1 of this section 
+# and explained step by step how to write the code.
 
 # =============================================================================
 # CHECKLIST
-#   [ ] ANCHOR:    ran the codebook table; answered Q1-Q3
-#   [ ] GUIDED:    'HELLO' encodes to ['....', '.', '.-..', '.-..', '---']
-#   [ ] EXTENSION: counted the comparisons needed to reach 'Z'
-#   [ ] STRETCH:   (optional) shortest/longest/average + numbered list
-#   [ ] I can explain why linear search gets slower as data grows
+#   [x] ANCHOR:    ran the codebook table; answered Q1-Q3
+#   [x] GUIDED:    'HELLO' encodes to ['....', '.', '.-..', '.-..', '---']
+#   [x] EXTENSION: counted the comparisons needed to reach 'Z'
+#   [x] STRETCH:   (optional) shortest/longest/average + numbered list
+#   [x] I can explain why linear search gets slower as data grows
 #
 # LOOKING AHEAD — Week 4
 #   Next week you learn IF / ELIF / ELSE. That lets you handle the messy
