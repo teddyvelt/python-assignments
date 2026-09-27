@@ -10,7 +10,6 @@
 #  unknown characters is exactly what next week's 'if' will add.)
 # =============================================================================
 
-
 # =============================================================================
 # SECTION 1 — ANCHOR
 # =============================================================================
@@ -47,10 +46,13 @@ print(f"\nThe codebook has {len(CODEBOOK)} entries.")
 # -- ANCHOR QUESTIONS ------------------------------------------------------
 # Q1. Why is a tuple ('A', '.-') safer here than a list ['A', '.-']?
 #     (Hint: what should NEVER change about a codebook entry?)
+#A tuple is safer because it cannot be changed accidentally, while a list can
 # Q2. "for letter, pattern in CODEBOOK" unpacks each tuple into two names.
 #     How is that different from "for entry in CODEBOOK"?
+# for letter, pattern in CODEBOOK gives you two values from each tuple.
+# for entry in CODEBOOK gives you the whole tuple as one value.
 # Q3. CODEBOOK[:8] is a slice. What would CODEBOOK[-3:] give you?
-
+# It gives you the last 3 items in CODEBOOK.
 
 # =============================================================================
 # SECTION 2 — GUIDED
@@ -67,7 +69,7 @@ patterns = [pair[1] for pair in CODEBOOK]   # comprehension: pull out patterns
 
 word = "HELLO"          # only known letters, no spaces (see header note)
 
-encoded = []
+encoded = [patterns[letters.index(character)] for character in word]
 # TODO: loop over each character in 'word'. For each one, find its position
 #       with letters.index(character), grab patterns[position], and append
 #       that to 'encoded'.
@@ -104,7 +106,13 @@ print(f"\nVowel patterns (A,E,I,O,U): {vowel_patterns}")
 # (Week 5: a dictionary finds any letter in ONE step, no scanning.)
 
 # TODO: count and print the number of comparisons needed to reach 'Z'
+count = 0
+for letter, pattern in CODEBOOK:
+    count += 1
+    if letter == 'Z':
+        break
 
+print(f"Comparisons needed to reach 'Z': {count}")
 
 # =============================================================================
 # SECTION 4 — STRETCH
