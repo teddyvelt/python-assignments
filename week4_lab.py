@@ -58,11 +58,14 @@ for symbol in test_symbols:
 # -- ANCHOR QUESTIONS ------------------------------------------------------
 # Q1. The chain checks '.', then '-', then ' ', then else. What happens if
 #     a symbol matches the FIRST branch — do the others still get checked?
+# yes because the first branch matches and the others are not skipped giving the correct classification
 # Q2. Why do we need the final 'else' (unknown)? What real input might land
 #     there, and why is silently ignoring it safer than crashing?
+# to make sure the program can handle unexpected input gracefully without crashing.
 # Q3. Could you rewrite this with three separate 'if' statements instead of
 #     elif? Would the result be the same? Which is clearer?
-
+# no you could not. The result would be different because all 'if' statements would be checked independently, 
+# potentially overwriting the 'kind' variable multiple times. The 'if/elif/else' chain is clearer and more efficient.
 
 # =============================================================================
 # SECTION 2 — GUIDED
@@ -78,7 +81,7 @@ print("=" * 52)
 message = "Hi Mom"     # mixed case AND a space — last week this would crash
 
 # TODO Step 1: normalize the message to uppercase so 'h' matches 'H'.
-message = message      # TODO: replace with message.upper()
+message = message.upper()      # TODO: replace with message.upper()
 
 encoded = []
 # TODO Step 2: loop over each character. Inside the loop, use if/elif/else:
@@ -96,6 +99,13 @@ encoded = []
 #           encoded.append('?')
 
 # (write your loop here)
+for character in message:
+    if character == ' ':
+        encoded.append(' ')
+    elif character in letters:
+        encoded.append(patterns[letters.index(character)])
+    else:
+        encoded.append('?')
 
 print(f"\nEncoding '{message}':")
 print(f"  result -> {encoded}")
@@ -128,7 +138,13 @@ print(f"  [LED] OFF {LETTER_GAP_MS}ms (letter gap)")
 # End with the letter-gap line.
 
 # TODO: transmit the pattern for 'S'
-
+print("\nTransmitting 'S' ( ... ):")
+for symbol in '...':
+    if symbol == '.':
+        print(f"  [LED] ON {DOT_MS}ms (dot), then OFF {SYMBOL_GAP_MS}ms")
+    elif symbol == '-':
+        print(f"  [LED] ON {DASH_MS}ms (dash), then OFF {SYMBOL_GAP_MS}ms")
+print(f"  [LED] OFF {LETTER_GAP_MS}ms (letter gap)")
 
 # =============================================================================
 # SECTION 4 — STRETCH
