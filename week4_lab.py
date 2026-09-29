@@ -171,11 +171,11 @@ print("=" * 52)
 
 # =============================================================================
 # CHECKLIST
-#   [ ] ANCHOR:    ran the classifier; answered Q1-Q3
-#   [ ] GUIDED:    'Hi Mom' -> ['....', '..', ' ', '--', '---', '--']
-#   [ ] EXTENSION: 'S' transmits as three dots + a letter gap
+#   [x] ANCHOR:    ran the classifier; answered Q1-Q3
+#   [x] GUIDED:    'Hi Mom' -> ['....', '..', ' ', '--', '---', '--']
+#   [x] EXTENSION: 'S' transmits as three dots + a letter gap
 #   [ ] STRETCH:   (optional) dot/dash boundary decisions
-#   [ ] I can explain why the first matching branch wins
+#   [x] I can explain why the first matching branch wins
 #
 # LOOKING AHEAD — Week 5
 #   Next week: DICTIONARIES. Every letters.index() lookup you've written
