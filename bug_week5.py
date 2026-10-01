@@ -29,9 +29,8 @@ grade_book = {
     "alice":   95,
     "bob":     82,
     "carlos":  90,
-    "diana":   "78",
-    "eve":     93,
-}
+    "diana":   78,
+    "eve":     93,}
 
 # ============================================================
 # BUG 1 — Find with: standard run 
@@ -40,7 +39,7 @@ grade_book = {
 # ============================================================
 print("--- Grade Lookup ---")
 student = "Alice"
-print(f"{student}'s grade: {grade_book[student]}")
+print(f"{student}'s grade: {grade_book[student.lower()]}")
 
 print("\n--- All Grades ---")
 for name, grade in grade_book.items():
@@ -55,7 +54,7 @@ for name, grade in grade_book.items():
 # ============================================================
 print("\n--- Honor Roll (grade >= 90) ---")
 for name, grade in grade_book.items():
-    if grade > 90:
+    if grade >=90:
         print(f"  {name.title()} made the honor roll!")
 
 
@@ -68,7 +67,7 @@ for name, grade in grade_book.items():
 # ============================================================
 print("\n--- Top Student ---")
 top_student = ""
-top_grade = 100
+top_grade = 0
 for name, grade in grade_book.items():
     if grade > top_grade:
         top_student = name
