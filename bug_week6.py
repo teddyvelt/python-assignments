@@ -86,7 +86,7 @@ num_orders = input("How many sandwiches would you like to order? ")
 
 # Bug is here: num_orders is a string — you can't compare
 # a string to an integer with >
-if num_orders > 0:
+if int(num_orders) >=0:
     print(f"Great! Let's get started on {num_orders} sandwiches.")
 else:
     print("No sandwiches ordered.")
@@ -96,7 +96,6 @@ else:
 # BUG 2 — Find with: VS Code Debugger
 #
 # The sandwich queue below should contain exactly these orders:
-#   ["turkey", "veggie", "roast beef", "grilled cheese"]
 # But when you loop through it, one sandwich is wrong.
 # No crash — just wrong data quietly sitting in the list.
 #
@@ -113,7 +112,7 @@ else:
 #       but it will make a customer unhappy.
 # ============================================================
 print("\n--- Processing Orders ---")
-sandwich_queue = ["turkey", "veggie", "roast beef", "grilled chese"]
+sandwich_queue = ["turkey", "veggie", "roast beef", "grilled cheese"]
 finished = []
 
 while sandwich_queue:
@@ -157,7 +156,8 @@ active      = True
 
 while active:
     print(f"  Order #{order_count + 1} received.")
-    # BUG: order_count is never incremented — it stays 0 forever
+# : order_count is never incremented — it stays 0 forever
+    order_count += 1
     if order_count == max_orders:
         active = False
 
@@ -182,11 +182,11 @@ while active:
 #
 #   | Test Case          | qty | order_total | Expected          | Actual | Pass? |
 #   |--------------------|-----|-------------|-------------------|--------|-------|
-#   | A: Clearly above   |  8  |    40.00    | 20% off → $32.00  |        |       |
-#   | B: Clearly below   |  3  |    15.00    | No discount       |        |       |
-#   | C: BOUNDARY (exact)|  5  |    25.00    | 20% off → $20.00  |        |       |
-#   | D: One below bdry  |  4  |    20.00    | No discount       |        |       |
-#   | E: EMPTY (zero qty)|  0  |     0.00    | No discount       |        |       |
+#   | A: Clearly above   |  8  |    40.00    | 20% off → $32.00  | No discount | no       |
+#   | B: Clearly below   |  3  |    15.00    | No discount       | No discount | yes      |
+#   | C: BOUNDARY (exact)|  5  |    25.00    | 20% off → $20.00  | No discount | no       |
+#   | D: One below bdry  |  4  |    20.00    | No discount       | No discount | yes      |
+#   | E: EMPTY (zero qty)|  0  |     0.00    | No discount       | No discount | no       |
 #
 # STEP 3: Which test case(s) fail? What does the output show?
 #
@@ -204,9 +204,9 @@ while active:
 # ============================================================
 print("\n--- Discount Calculator ---")
 order_total = 25.00
-qty         = 5          # change this when running test cases
+qty         =0          # change this when running test cases
 
-if qty > 5:              # BUG: should be >= 5
+if qty >=5:              # BUG: should be >= 5
     discount     = order_total * 0.20
     final_total  = order_total - discount
     print(f"  Qty: {qty}  |  Bulk discount applied!")
@@ -220,12 +220,11 @@ else:
 #
 #   | Test Case          | qty | order_total | Expected    | Actual | Pass? |
 #   |--------------------|-----|-------------|-------------|--------|-------|
-#   | A: Clearly above   |     |             |             |        |       |
-#   | B: Clearly below   |     |             |             |        |       |
-#   | C: Boundary exact  |     |             |             |        |       |
-#   | D: One below bdry  |     |             |             |        |       |
-#   | E: Empty / zero    |     |             |             |        |       |
-#
+#   | A: Clearly above   | 9    |    25.00    | 20% off → $20.00  | Bulk discount applied | yes      |
+#   | B: Clearly below   | 1    |    25.00    | $25.00  |  No discount. Total: $25.00     | yes      |
+#   | C: Boundary exact  | 5    |    25.00    | 20% off → $20.00  | Bulk discount applied | yes      |
+#   | D: One below bdry  | 4    |    25.00    | $25.00  |  No discount. Total: $25.00     | yes      |
+#   | E: Empty / zero    | 0    |    25.00    | $25.00  |  No discount. Total: $25.00     | yes      |
 # ============================================================
 # REFLECTION QUESTIONS:
 #
@@ -233,7 +232,8 @@ else:
 #      you could fix it? (Hint: you could change the loop
 #      condition OR add something inside the loop body.)
 #      Which fix is more readable, and why?
-#
+# The order_count was never increased, so it stayed at 0 forever. Because of that, order_count == max_orders was never true, 
+#  causing an infinite loop.
 #   2. Bug 4 was caused by what?
 #      What kind of error is this typically called? (Hint: it's a very common type of logic error.) 
 #      What are some strategies for avoiding this kind of error in the future? 
