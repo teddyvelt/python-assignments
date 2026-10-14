@@ -43,11 +43,16 @@ print(f"Looking up '@': {ENCODE_MAP.get('@', '?')}   (.get returns '?' for unkno
 # -- ANCHOR QUESTIONS ------------------------------------------------------
 # Q1. Last week a lookup for 'Z' scanned 26 entries. How many entries does
 #     ENCODE_MAP['Z'] check? Why doesn't dictionary size slow it down?
+# Dictionaries use the key to quickly find the value, so the dictionary size does not significantly slow down the lookup
 # Q2. What is the difference between ENCODE_MAP['@'] and
 #     ENCODE_MAP.get('@', '?') ? When would each be the right choice?
+#ENCODE_MAP['@'] causes a KeyError if @ is not found.
+#ENCODE_MAP.get('@', '?') returns ? instead of crashing.
+#Ue [] when the key should exist, and .get() when the key might not exist.
 # Q3. Why can a dictionary NEVER have the parallel-list bug from Week 2,
 #     where a letter and its pattern drift out of alignment?
-
+# A dictionary keeps each letter directly connected to its pattern as a key-value pair, so the letter
+#  and pattern cannot become separated like they can in parallel lists.
 
 # =============================================================================
 # SECTION 2 — GUIDED
@@ -60,7 +65,8 @@ print("=" * 52)
 # TODO Step 1: build DECODE_MAP by flipping ENCODE_MAP. Use a dict
 #              comprehension over ENCODE_MAP.items():
 #                  {pattern: letter for letter, pattern in ENCODE_MAP.items()}
-DECODE_MAP = {}    # TODO: replace {} with the comprehension above
+
+DECODE_MAP = {pattern: letter for letter, pattern in ENCODE_MAP.items()}
 
 print(f"\nDECODE_MAP has {len(DECODE_MAP)} entries.")
 
@@ -79,6 +85,11 @@ print(f"\nEncoded '{message}' -> {encoded}")
 #              space ' ' to 'decoded_chars'; otherwise use DECODE_MAP.get()
 #              with a default of '?' and append the letter.
 decoded_chars = []
+for pattern in encoded:
+    if pattern == ' ':
+        decoded_chars.append(' ')
+    else:
+        decoded_chars.append(DECODE_MAP.get(pattern, '?'))
 # (write your loop here)
 
 decoded = "".join(decoded_chars)
