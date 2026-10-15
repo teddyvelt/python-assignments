@@ -237,7 +237,8 @@ else:
 #   2. Bug 4 was caused by what?
 #      What kind of error is this typically called? (Hint: it's a very common type of logic error.) 
 #      What are some strategies for avoiding this kind of error in the future? 
-#
+# This is a boundary error, also called an off-by-one error. The condition accidentally leaves out the boundary value, which is 5.
+# Carefully check whether the requirement says greater than (>) or greater than or equal to (>=).
 #   3. This week we added BOUNDARY and EMPTY to our test
 #      case categories. Why is the boundary case (qty == 5)
 #      more likely to contain a bug than qty == 8 or qty == 3?
