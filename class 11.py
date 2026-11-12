@@ -14,7 +14,6 @@ class dog:
 
 
 
-
 my_dog = dog('willie', 6)
 print("name: " + my_dog.name)  
 print("age: " + str(my_dog.age))
